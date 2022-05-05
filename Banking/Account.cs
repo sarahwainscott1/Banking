@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Banking {
     internal class Account {
+
+        //properties
         private static int NextId = 1;
         public int AcctNbr { get; private set; } = 0; //private set says can only change within account class, not in program
         public string Name { get; set; } = string.Empty;
         public decimal Balance { get; private set; } = 0;
 
+        //methods
         public bool Deposit(decimal Amount) {
             if (Amount < 0) {
                 Console.WriteLine("Amount must be greater than 0.");
                 return false;
                 }
-            Balance = Balance + Amount;
+            Balance += Amount;
             return true; 
             }
         public bool Withdraw(decimal Amount) {
@@ -28,7 +31,7 @@ namespace Banking {
                         Console.WriteLine("Insufficient Balance :(");
                         return false;
                      }
-                Balance = Balance - Amount;
+                Balance -= Amount;
                 return true;
                 }
         public bool Transfer(decimal Amount, Account DAccount) { //assume withdraw from this acct, must set deposit account
@@ -38,7 +41,7 @@ namespace Banking {
                 }
             return false;
             }
-
+        //constructor
         public Account() {
             AcctNbr = NextId++;
             }
